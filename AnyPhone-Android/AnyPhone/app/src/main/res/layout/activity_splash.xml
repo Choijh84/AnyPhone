@@ -16,6 +16,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/app_name"
         android:textSize="50dp"
+        android:textColor="?attr/colorPrimary"
         android:id="@+id/app_name"
         android:layout_marginTop="175dp"
         android:layout_alignParentTop="true"
