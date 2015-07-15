@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogOutCallback;
@@ -21,24 +20,20 @@ import com.parse.SaveCallback;
 
 public class MainActivity extends AppCompatActivity {
     ParseUser user = ParseUser.getCurrentUser();
-    private TextView phoneNumberLabel, nameLabel;
-    private EditText nameField, phoneNumberField;
-    private Button saveSettingsButton;
+    private EditText nameField;
     private Switch setting1, setting2, setting3;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        phoneNumberField = (EditText) findViewById(R.id.phoneNumberField);
+        EditText phoneNumberField = (EditText) findViewById(R.id.phoneNumberField);
         phoneNumberField.setText(LoginActivity.phoneNumber);
         nameField = (EditText) findViewById(R.id.nameField);
 
@@ -46,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setting2 = (Switch) findViewById(R.id.setting2);
         setting3 = (Switch) findViewById(R.id.setting3);
 
-        saveSettingsButton = (Button) findViewById(R.id.saveSettingsButton);
+        Button saveSettingsButton = (Button) findViewById(R.id.saveSettingsButton);
         saveSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,19 +49,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(!ParseUser.getCurrentUser().isNew())
+        if (!ParseUser.getCurrentUser().isNew())
             checkSettings();
 
-
     }
-    private  void checkSettings(){
-        nameField.setText(user.get("name").toString());
+
+    private void checkSettings() {
+        nameField.setText(user.getString("name"));
         setting1.setChecked(user.getBoolean("setting1"));
         setting2.setChecked(user.getBoolean("setting2"));
         setting2.setChecked(user.getBoolean("setting3"));
     }
+
     private void saveSettings() {
-        if(nameField != null) {
+        if (nameField != null) {
             user.put("name", nameField.getText().toString());
 
             if (setting1.isChecked()) {
@@ -86,13 +82,13 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             });
-        }else{
+        } else {
             Toast.makeText(getApplicationContext(), "Please enter a username.",
                     Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void logout (){
+    private void logout() {
         user.logOutInBackground(new LogOutCallback() {
             @Override
             public void done(ParseException e) {
