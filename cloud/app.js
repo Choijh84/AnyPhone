@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 
 var language = "en";
-var languages = ["en", "ja"];
+var languages = ["en", "es", "ja"];
 
 var strings = require("cloud/strings.js");
 

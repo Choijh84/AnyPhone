@@ -6,7 +6,7 @@ var twilioPhoneNumber = 'Your-Twilio-Phone-Number';
 var secretPasswordToken = 'Something-Random-Here';
 
 var language = "en";
-var languages = ["en", "ja"];
+var languages = ["en", "es", "ja"];
 
 var twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
 
