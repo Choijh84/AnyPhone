@@ -44,6 +44,7 @@ Parse.Cloud.define("sendCode", function(req, res) {
 			user.set("language", language);
 			user.setACL({}); 
 			user.save().then(function(a) {
+				return sendCodeSms(phoneNumber, num, language);
 			}).then(function() {
 				res.success();
 			}, function(err) {
