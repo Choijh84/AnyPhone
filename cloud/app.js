@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 
 var language = "en";
-var languages = ["en", "es", "ja"];
+var languages = ["en", "es", "ja", "kr"];
 
 var strings = require("cloud/strings.js");
 
@@ -45,7 +45,7 @@ app.post('/', function(req, res) {
     phoneNumber = phoneNumber.replace(/\D/g, '');
     // check that length of number is 10 for US, 11 for Japan
     if(language == "en" && phoneNumber.length != 10
-      || language == "ja" && phoneNumber.length != 11) {
+      || (language == "ja" || language == "kr") && phoneNumber.length != 11) {
       res.render("index.ejs", extend(strings[language], {warning: strings[language]['warningPhone'], 'language': language}));
     }
     Parse.Cloud.run("sendCode", {phoneNumber: phoneNumber, language: language}).then(function(response){
@@ -57,7 +57,7 @@ app.post('/', function(req, res) {
     }, function(error){
       res.render("index.ejs", extend(strings[language], {warning: strings[language]['warningGeneral'], 'language': language}));
     });
-  } else { 
+  } else {
     res.render("index.ejs", extend(strings[language], {warning: strings[language]['warningNoNumber'], 'language': language}))
   }
 });
@@ -107,7 +107,7 @@ app.get('/dashboard/:sessionToken', function(req, res) {
 
     res.render("dashboard.ejs", extend(strings[language], {
       sessionToken: sessionToken,
-      phoneNumber: user.get("username"), 
+      phoneNumber: user.get("username"),
       name: user.get("name"),
       setting1: user.get("setting1"),
       setting2: user.get("setting2"),
@@ -148,7 +148,7 @@ app.post('/dashboard', function(req, res) {
 
       res.render("dashboard.ejs", extend(strings[language], {
         sessionToken: sessionToken,
-        phoneNumber: user.get("username"), 
+        phoneNumber: user.get("username"),
         name: user.get("name"),
         setting1: user.get("setting1"),
         setting2: user.get("setting2"),
