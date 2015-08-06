@@ -6,7 +6,7 @@ var twilioPhoneNumber = 'Your-Twilio-Phone-Number';
 var secretPasswordToken = 'Something-Random-Here';
 
 var language = "en";
-var languages = ["en", "es", "ja"];
+var languages = ["en", "es", "ja", "kr"];
 
 var twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
 
@@ -42,7 +42,7 @@ Parse.Cloud.define("sendCode", function(req, res) {
 			user.setUsername(phoneNumber);
 			user.setPassword(secretPasswordToken + num);
 			user.set("language", language);
-			user.setACL({}); 
+			user.setACL({});
 			user.save().then(function(a) {
 				return sendCodeSms(phoneNumber, num, language);
 			}).then(function() {
@@ -77,6 +77,9 @@ function sendCodeSms(phoneNumber, code, language) {
 	var prefix = "+1";
 	if(typeof language !== undefined && language == "ja") {
 		prefix = "+81";
+	} else if (typeof language !== undefined && language == "kr") {
+		prefix = "+82";
+		phoneNumber = phoneNumber.substring(1);
 	}
 
 	var promise = new Parse.Promise();

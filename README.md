@@ -12,7 +12,7 @@
 
 * Create a new Parse App, and [set up a Cloud Code folder](https://parse.com/docs/js/guide#cloud-code) for the project.  
 * Copy the contents of the `cloud/` folder from this repository into the `cloud/` folder in your Cloud Code folder.  
-* Edit `main.js` to include your Twilio Account Sid, Auth Token, and phone number.  Generate some random string to use as the password token. 
+* Edit `main.js` to include your Twilio Account Sid, Auth Token, and phone number.  Generate some random string to use as the password token.
 * Pull all required iOS dependencies from `Cocoapods` by running `pod install` under `AnyPhone` folder.
 * Open the `AnyPhone/AnyPhone.xcworkspace`, and put your Parse Application Id and Client Key in `AppDelegate.swift`.
 * Deploy your Cloud Code by running `parse deploy` from the root of your Cloud Code folder.
@@ -23,7 +23,7 @@ The Android project demonstrates you how to use Twilio and Parse for phone numbe
 
 * Create a new Parse App, and [set up a Cloud Code folder](https://parse.com/docs/js/guide#cloud-code) for the project.  
 * Copy the contents of the `cloud/` folder from this repository into the `cloud/` folder in your Cloud Code folder.  
-* Edit `main.js` to include your Twilio Account Sid, Auth Token, and phone number.  Generate some random string to use as the password token. 
+* Edit `main.js` to include your Twilio Account Sid, Auth Token, and phone number.  Generate some random string to use as the password token.
 * Add your Parse application id and client key in `Application.java`.
 * Deploy your Cloud Code by running parse deploy from the root of your Cloud Code folder.
 
@@ -35,6 +35,7 @@ The Android project demonstrates you how to use Twilio and Parse for phone numbe
 
 ##### Localization
 * Japanese mobile phone and language localization support added.
+* Korean mobile phone and language localization support added.
 
 #### Optionally
 
@@ -43,5 +44,3 @@ The Android project demonstrates you how to use Twilio and Parse for phone numbe
   * Enhance the input validation to support more countries and number formats
   * Improvements to the flow and user experience
   * Add brute-force protection, resetting the code after a few failed attempts
-  
-
