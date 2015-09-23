@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 
 var language = "en";
-var languages = ["en", "es", "ja", "kr"];
+var languages = ["en", "es", "ja", "kr", "pt-BR"];
 
 var strings = require("cloud/strings.js");
 
@@ -43,9 +43,10 @@ app.post('/', function(req, res) {
 
   if(phoneNumber) {
     phoneNumber = phoneNumber.replace(/\D/g, '');
-    // check that length of number is 10 for US, 11 for Japan
+    // check that length of number is 10 for US, 11 for Japan or Korea, 10 or 11 for Brazil
     if(language == "en" && phoneNumber.length != 10
-      || (language == "ja" || language == "kr") && phoneNumber.length != 11) {
+      || ((language == "ja" || language == "kr") && phoneNumber.length != 11)
+      || (language == "pt-BR" && phoneNumber.length != 10 && phoneNumber.length != 11)) {
       res.render("index.ejs", extend(strings[language], {warning: strings[language]['warningPhone'], 'language': language}));
     }
     Parse.Cloud.run("sendCode", {phoneNumber: phoneNumber, language: language}).then(function(response){

@@ -6,7 +6,7 @@ var twilioPhoneNumber = 'Your-Twilio-Phone-Number';
 var secretPasswordToken = 'Something-Random-Here';
 
 var language = "en";
-var languages = ["en", "es", "ja", "kr"];
+var languages = ["en", "es", "ja", "kr", "pt-BR"];
 
 var twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
 
@@ -80,7 +80,9 @@ function sendCodeSms(phoneNumber, code, language) {
 	} else if (typeof language !== undefined && language == "kr") {
 		prefix = "+82";
 		phoneNumber = phoneNumber.substring(1);
-	}
+	} else if (typeof language !== undefined && language == "pt-BR") {
+		prefix = "+55";
+  }
 
 	var promise = new Parse.Promise();
 	twilio.sendSms({

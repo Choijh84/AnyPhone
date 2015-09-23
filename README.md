@@ -36,6 +36,7 @@ The Android project demonstrates you how to use Twilio and Parse for phone numbe
 ##### Localization
 * Japanese mobile phone and language localization support added.
 * Korean mobile phone and language localization support added.
+* Portuguese (Brazil) mobile phone and language localization support added.
 
 #### Optionally
 
