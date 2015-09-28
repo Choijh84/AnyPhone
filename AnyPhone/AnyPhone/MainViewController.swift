@@ -43,7 +43,7 @@ class MainViewController: UIViewController {
   }
 
   @IBAction func didTapLogOut(sender: AnyObject) {
-    PFUser.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
+    PFUser.logOutInBackgroundWithBlock { error in
       self.dismissViewControllerAnimated(true, completion: nil)
     }
   }

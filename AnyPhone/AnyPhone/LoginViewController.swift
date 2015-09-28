@@ -52,10 +52,9 @@ class LoginViewController: UIViewController {
   }
 
   @IBAction func didTapSendCodeButton() {
-    let preferredLanguages = NSBundle.mainBundle().preferredLocalizations
-    let preferredLanguage = preferredLanguages[0]
+    let preferredLanguage = NSBundle.mainBundle().preferredLocalizations[0]
 
-    let textFieldText = textField.text == nil ? "" : textField.text!
+    let textFieldText = textField.text ?? ""
 
     if phoneNumber == "" {
       if (preferredLanguage == "en" && textFieldText.characters.count != 10)
@@ -66,7 +65,7 @@ class LoginViewController: UIViewController {
 
       self.editing = false
       let params = ["phoneNumber" : textFieldText, "language" : preferredLanguage]
-      PFCloud.callFunctionInBackground("sendCode", withParameters: params) { (response: AnyObject?, error: NSError?) -> Void in
+      PFCloud.callFunctionInBackground("sendCode", withParameters: params) { response, error in
         self.editing = true
         if let error = error {
           var description = error.description
@@ -81,10 +80,8 @@ class LoginViewController: UIViewController {
         return self.step2()
       }
     } else {
-      if let text = textField?.text, let code = Int(text) {
-        if text.characters.count == 4 {
-          return doLogin(phoneNumber, code: code)
-        }
+      if textFieldText.characters.count == 4, let code = Int(textFieldText) {
+        return doLogin(phoneNumber, code: code)
       }
 
       showAlert("Code Entry", message: NSLocalizedString("warningCodeLength", comment: "You must enter the 4 digit code texted to your phone number."))
@@ -94,13 +91,13 @@ class LoginViewController: UIViewController {
   func doLogin(phoneNumber: String, code: Int) {
     self.editing = false
     let params = ["phoneNumber": phoneNumber, "codeEntry": code] as [NSObject:AnyObject]
-    PFCloud.callFunctionInBackground("logIn", withParameters: params) { (response: AnyObject?, error: NSError?) -> Void in
+    PFCloud.callFunctionInBackground("logIn", withParameters: params) { response, error in
       if let description = error?.description {
         self.editing = true
         return self.showAlert("Login Error", message: description)
       }
       if let token = response as? String {
-        PFUser.becomeInBackground(token) { (user: PFUser?, error: NSError?) -> Void in
+        PFUser.becomeInBackground(token) { user, error in
           if let _ = error {
             self.showAlert("Login Error", message: NSLocalizedString("warningGeneral", comment: "Something happened while trying to log in.\nPlease try again."))
             self.editing = true
