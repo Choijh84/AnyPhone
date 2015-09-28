@@ -12,11 +12,10 @@ import Parse
 class InitialViewController: UIViewController {
 
   override func viewDidAppear(animated: Bool) {
-    if let currentUser = PFUser.currentUser() {
+    if let _ = PFUser.currentUser() {
       self.performSegueWithIdentifier("toMain", sender: self)
     } else {
       self.performSegueWithIdentifier("toLogin", sender: self)
     }
   }
 }
-
