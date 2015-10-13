@@ -115,7 +115,35 @@ var string = {
         'dashboardLogout': "로그 아웃",
         'alertOK': "예",
     },
-
+    'pt-BR': {
+        'title': "AnyPhone - QualquerTelefone",
+        'numberDefault': "11-99999-9999",
+        'enterPhone': "Por favor insira seu telefone para entrar.",
+        'enterPhoneExtra': "Esse exemplo é limitado a números brasileiros de 10 ou 11 dígitos.",
+        'buttonSubmit': "Continuar",
+        'buttonVerify': "Verificar",
+        'warningPhone': "Você precisa inserir um número brasileiro de 10 ou 11 dígitos, incluindo DDD.",
+        'warningTwilio': "Aconteceu um problema. Por favor verifique sua configuração do Twilio.",
+        'warningGeneral': "Aconteceu um problema. Por favor tente novamente.",
+        'warningNoNumber': "Você esqueceu de inserir seu número de telefone.",
+        'warningCodeLength': "Você precisa inserir um código de 4 dígitos enviado via mensagem de texto para o seu número de telefone.",
+        'warningCodeInvalid': "Esse código de verificação não é válido.",
+        'messageWelcomeDashboard': "Bem-vindo a sua Área de Usuário",
+        'enterCode': "Insira o código de confirmação de 4 dígitos",
+        'enterCodeExtra': "Ele foi enviado em uma mensagem de texto para",
+        'emailLogin': "Seu código de login para AnyPhone é",
+        'dashboardWelcome': "Bem-vindo a sua Área de Usuário",
+        'dashboardNumber': "Seu Telefone",
+        'dashboardName': "Seu Nome",
+        'dashboardNameHint': "Roberto Nascimento",
+        'dashboardSetting1': "BOPE",
+        'dashboardSetting2': "Equipe Alfa",
+        'dashboardSetting3': "Tenente-Coronel",
+        'dashboardUpdate': "Atualizar",
+        'dashboardFinished': "Você terminou?",
+        'dashboardLogout': "Sair",
+        'alertOK': "OK",
+    }
 };
 
 
