@@ -33,7 +33,7 @@ Parse.Cloud.define("sendCode", function(req, res) {
 			result.save().then(function() {
 				return sendCodeSms(phoneNumber, num, language);
 			}).then(function() {
-				res.success();
+				res.success({});
 			}, function(err) {
 				res.error(err);
 			});
@@ -46,7 +46,7 @@ Parse.Cloud.define("sendCode", function(req, res) {
 			user.save().then(function(a) {
 				return sendCodeSms(phoneNumber, num, language);
 			}).then(function() {
-				res.success();
+				res.success({});
 			}, function(err) {
 				res.error(err);
 			});
